@@ -9,6 +9,7 @@ module Vector2Types =
    type Vector2i =
       { R : int
         C : int }
+      member this.Magnitude = Math.Sqrt(float (this.R * this.R + this.C * this.C))
       static member Zero = { R = 0; C = 0 }
       static member One = { R = 1; C = 1 }
       static member UnitR = { R = 1; C = 0 }
@@ -18,6 +19,8 @@ module Vector2Types =
       static member inline (-)(a : Vector2i, b : Vector2i) = { R = a.R - b.R; C = a.C - b.C }
       static member inline (*)(a : Vector2i, b) = { R = a.R * int b; C = a.C * (int b) }
       static member inline (*)(a, b : Vector2i) = { R = int a * b.R; C = int a * b.C }
+      static member inline Distance(a : Vector2i, b : Vector2i) = (b - a).Magnitude
+      static member inline ManhattanDistance(a : Vector2i, b : Vector2i) = abs (b.C - a.C) + abs (b.R - a.R)
       
    [<Struct>]
    [<StructuredFormatDisplay("({R}, {C})")>]
